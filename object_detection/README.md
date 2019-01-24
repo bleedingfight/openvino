@@ -120,7 +120,7 @@ Throughput: 32.8871 FPS
 
 ![输出图像](../demo/out_0.bmp)
 
-## 优化文件(百度网盘：[下载](提取码：))
+## 优化文件(百度网盘：[下载](https://pan.baidu.com/s/1ykvqy9A7af9BVGDhJc3w5g)(提取码：6rex))
 文件结构如下：
 ```
 ├── checkpoint
