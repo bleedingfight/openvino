@@ -116,9 +116,9 @@ Throughput: 32.8871 FPS
 ```
 输出结果如下：
 
-![原始图像](demo/example.jpeg)
+![原始图像](../demo/example.jpeg)
 
-![输出图像](demo/out_0.bmp)
+![输出图像](../demo/out_0.bmp)
 
 ## 优化文件(百度网盘：[下载](提取码：))
 文件结构如下：
