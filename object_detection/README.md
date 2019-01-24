@@ -118,8 +118,14 @@ Throughput: 32.8871 FPS
 输出结果如下：
 
 ![原始图像](../demo/example.jpeg)
+<p align="center">
+<img src="../demo/example.jpeg" width=676 height=450>
+</p>
 
-![输出图像](../demo/out_0.bmp)
+<p align="center">
+<img src="../demo/out_0.bmp" width=676 height=450>
+</p>
+
 
 ## 优化文件(百度网盘：[下载](https://pan.baidu.com/s/1ykvqy9A7af9BVGDhJc3w5g)(提取码：6rex))
 文件结构如下：
