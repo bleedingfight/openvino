@@ -1,7 +1,7 @@
 # openvino
 ## 计算机环境
 - Linux amax-Super-Server 4.13.0-32-generic #35~16.04.1-Ubuntu SMP Thu Jan 25 10:13:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-## 使用tensorflow预训练目标检测网络优化(假设OpenVINO环境安装征程)
+## 使用tensorflow预训练目标检测网络优化(假设OpenVINO环境安装正常)
 - 下载tensorflow预训练目标检测模型[ssd_mobilenet_v2](http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz)
 - 执行优化脚本`bash script/intel_mo_script.sh`,脚本内容如下：
 ```bash
@@ -77,7 +77,9 @@ network=${mo_intel_dir}/frozen_inference_graph.xml
 ${ssd_bin} -i example.jpeg -m ${network} -d CPU
 
 ```
+
 输出结果如下：
+
 ```
 [ INFO ] InferenceEngine: 
 	API version ............ 1.4
@@ -113,5 +115,30 @@ Throughput: 32.8871 FPS
 
 ```
 输出结果如下：
+
 ![原始图像](demo/example.jpeg)
+
 ![输出图像](demo/out_0.bmp)
+
+## 优化文件(百度网盘：[下载](提取码：))
+文件结构如下：
+```
+├── checkpoint
+├── frozen_inference_graph.pb
+├── model.ckpt.data-00000-of-00001
+├── model.ckpt.index
+├── model.ckpt.meta
+├── mo_intel
+│   ├── frozen_inference_graph.bin
+│   ├── frozen_inference_graph.mapping
+│   └── frozen_inference_graph.xml
+├── pipeline.config
+├── saved_model
+│   ├── saved_model.pb
+│   └── variables
+└── script
+    ├── example.jpeg
+    ├── intel_mo_predict.sh
+    ├── intel_mo_script.sh
+    └── out_0.bmp
+```
