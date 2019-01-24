@@ -117,13 +117,12 @@ Throughput: 32.8871 FPS
 ```
 输出结果如下：
 
-![原始图像](../demo/example.jpeg)
 <p align="center">
-<img src="../demo/example.jpeg" width=676 height=450>
+<img src="../demo/example.jpeg" width=300 height=300>
 </p>
 
 <p align="center">
-<img src="../demo/out_0.bmp" width=676 height=450>
+<img src="../demo/out_0.bmp" width=300 height=300>
 </p>
 
 
