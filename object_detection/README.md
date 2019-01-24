@@ -1,4 +1,3 @@
-[toc]
 # 目标检测
 ## 计算机环境
 - Linux amax-Super-Server 4.13.0-32-generic #35~16.04.1-Ubuntu SMP Thu Jan 25 10:13:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
@@ -115,12 +114,12 @@ Throughput: 32.8871 FPS
 [ INFO ] Execution successful
 
 ```
-输出结果如下：
+原始图像如下：
 
 <p align="center">
 <img src="../demo/example.jpeg" width=300 height=300>
 </p>
-
+输出结果如下：
 <p align="center">
 <img src="../demo/out_0.bmp" width=300 height=300>
 </p>
