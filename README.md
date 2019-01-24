@@ -67,7 +67,17 @@ The Preprocessor block has been removed. Only nodes performing mean value subtra
 [ SUCCESS ] Total execution time: 15.49 seconds. 
 
 ```
-- 预测结果
+- 执行预测脚本`bash scrip/intel_mo_predict.sh`预测结果,脚本内容如下：
+```bash
+# OpenVINO 编译生成的ssd文件路径
+ssd_bin=/home/amax/inference_engine_samples_build/intel64/Release/object_detection_sample_ssd
+# mo优化生成的xml文件所在路径
+mo_intel_dir=/home/amax/ssd_inception_v2_coco_2018_01_28/mo_intel
+network=${mo_intel_dir}/frozen_inference_graph.xml
+${ssd_bin} -i example.jpeg -m ${network} -d CPU
+
+```
+输出结果如下：
 ```
 [ INFO ] InferenceEngine: 
 	API version ............ 1.4
