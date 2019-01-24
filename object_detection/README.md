@@ -1,4 +1,4 @@
-# openvino
+# 目标检测
 ## 计算机环境
 - Linux amax-Super-Server 4.13.0-32-generic #35~16.04.1-Ubuntu SMP Thu Jan 25 10:13:43 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 ## 使用tensorflow预训练目标检测网络优化(假设OpenVINO环境安装正常)
