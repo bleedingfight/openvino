@@ -147,3 +147,121 @@ Throughput: 32.8871 FPS
     ├── intel_mo_script.sh
     └── out_0.bmp
 ```
+## ssd v2网络推理
+使用tensorflow训练的v2网络需要在训练后的模型中将config.pipeline中的`train = True` 改为`train = False`之后才能生成优化的bin和xml文件。
+在新的脚本下执行`bash mo_opt.sh `
+
+```
+[1] ----- faster_rcnn_support_api_v1.7.json
+[2] ----- faster_rcnn_support.json
+[3] ----- mask_rcnn_support_api_v1.11.json
+[4] ----- mask_rcnn_support_api_v1.7.json
+[5] ----- mask_rcnn_support.json
+[6] ----- rfcn_support.json
+[7] ----- ssd_support.json
+[8] ----- ssd_toolbox_detection_output.json
+[9] ----- ssd_toolbox_multihead_detection_output.json
+[10] ----- ssd_v2_support.json
+[11] ----- yolo_v1_v2.json
+[12] ----- yolo_v3.json
+/home/amax/intel/computer_vision_sdk/deployment_tools/model_optimizer/extensions/front/tf/mask_rcnn_support_api_v1.11.json
+请选择模型:  10
+/home/amax/intel/computer_vision_sdk/deployment_tools/model_optimizer/extensions/front/tf/faster_rcnn_support_api_v1.7.json
+###### 您选择的json文件为:ssd_v2_support.json
+Model Optimizer arguments:
+Common parameters:
+	- Path to the Input Model: 	/mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/frozen_inference_graph.pb
+	- Path for generated IR: 	/mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/intel_mo
+	- IR output name: 	frozen_inference_graph
+	- Log level: 	ERROR
+	- Batch: 	Not specified, inherited from the model
+	- Input layers: 	Not specified, inherited from the model
+	- Output layers: 	detection_boxes,detection_scores,num_detections
+	- Input shapes: 	Not specified, inherited from the model
+	- Mean values: 	Not specified
+	- Scale values: 	Not specified
+	- Scale factor: 	Not specified
+	- Precision of IR: 	FP32
+	- Enable fusing: 	True
+	- Enable grouped convolutions fusing: 	True
+	- Move mean values to preprocess section: 	False
+	- Reverse input channels: 	False
+TensorFlow specific parameters:
+	- Input model in text protobuf format: 	False
+	- Offload unsupported operations: 	False
+	- Path to model dump for TensorBoard: 	None
+	- List of shared libraries with TensorFlow custom layers implementation: 	None
+	- Update the configuration file with input/output node names: 	None
+	- Use configuration file used to generate the model with Object Detection API: 	/mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/pipeline.config
+	- Operations to offload: 	None
+	- Patterns to offload: 	None
+	- Use the config file: 	/home/amax/intel/computer_vision_sdk/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json
+Model Optimizer version: 	1.4.292.6ef7232d
+/home/amax/anaconda3/lib/python3.5/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+The Preprocessor block has been removed. Only nodes performing mean value subtraction and scaling (if applicable) are kept.
+
+[ SUCCESS ] Generated IR model.
+[ SUCCESS ] XML file: /mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/intel_mo/frozen_inference_graph.xml
+[ SUCCESS ] BIN file: /mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/intel_mo/frozen_inference_graph.bin
+[ SUCCESS ] Total execution time: 19.11 seconds. 
+
+```
+输出优化结果如下：
+```bash
+[ INFO ] InferenceEngine: 
+	API version ............ 1.4
+	Build .................. 17328
+Parsing input parameters
+[ INFO ] Files were added: 1
+[ INFO ]     /mnt/train_chess/test_image/example.png
+[ INFO ] Loading plugin
+
+	API version ............ 1.4
+	Build .................. lnx_20181004
+	Description ....... MKLDNNPlugin
+[ INFO ] Loading network files:
+	/mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/intel_mo/frozen_inference_graph.xml
+	/mnt/train_chess/train_output/ssd_mobilenet_v2_coco_2018_03_29_trainoutput/export_models/intel_mo/frozen_inference_graph.bin
+[ INFO ] Preparing input blobs
+[ INFO ] Batch size is 1
+[ INFO ] Preparing output blobs
+[ INFO ] Loading model to the plugin
+[ WARNING ] Image is resized from (640, 480) to (300, 300)
+[ INFO ] Batch size is 1
+[ INFO ] Start inference (1 iterations)
+[ INFO ] Processing output blobs
+[0,1] element, prob = 0.999961    (210.554,74.3187)-(253.47,118.206) batch id : 0 WILL BE PRINTED!
+[1,1] element, prob = 0.999956    (255.702,317.677)-(301.527,363.577) batch id : 0 WILL BE PRINTED!
+[2,1] element, prob = 0.999924    (463.739,223.401)-(506.011,267.229) batch id : 0 WILL BE PRINTED!
+[3,1] element, prob = 0.999821    (257.218,226.447)-(301.906,269.522) batch id : 0 WILL BE PRINTED!
+[4,1] element, prob = 0.999802    (261.671,119.751)-(305.027,164.275) batch id : 0 WILL BE PRINTED!
+[5,1] element, prob = 0.999779    (467.137,329.944)-(509.943,372.557) batch id : 0 WILL BE PRINTED!
+[6,1] element, prob = 0.999667    (261.124,21.5977)-(305.101,66.5238) batch id : 0 WILL BE PRINTED!
+[7,1] element, prob = 0.999615    (122.574,7.85445)-(165.675,55.6883) batch id : 0 WILL BE PRINTED!
+[8,1] element, prob = 0.999389    (106.529,423.158)-(152.407,469.356) batch id : 0 WILL BE PRINTED!
+[9,1] element, prob = 0.999389    (409.77,224.246)-(450.765,268.325) batch id : 0 WILL BE PRINTED!
+[10,1] element, prob = 0.999299    (570.467,226.986)-(614.907,270.094) batch id : 0 WILL BE PRINTED!
+[11,1] element, prob = 0.998824    (570.509,162.438)-(615.206,205.074) batch id : 0 WILL BE PRINTED!
+[12,1] element, prob = 0.998801    (413.24,114.065)-(456.125,158.549) batch id : 0 WILL BE PRINTED!
+[13,1] element, prob = 0.996859    (108.133,167.935)-(154.817,209.461) batch id : 0 WILL BE PRINTED!
+[14,1] element, prob = 0.995425    (205.089,378.243)-(252.144,427.253) batch id : 0 WILL BE PRINTED!
+[15,1] element, prob = 0.995348    (563.026,69.8918)-(609.705,114.824) batch id : 0 WILL BE PRINTED!
+[16,1] element, prob = 0.99208    (107.174,371.902)-(155.295,414.948) batch id : 0 WILL BE PRINTED!
+[17,1] element, prob = 0.984267    (252.578,428.485)-(296.941,472.183) batch id : 0 WILL BE PRINTED!
+[18,1] element, prob = 0.977793    (103.667,277.236)-(152.858,318.794) batch id : 0 WILL BE PRINTED!
+[19,1] element, prob = 0.795092    (517.955,372.259)-(563.981,419.081) batch id : 0 WILL BE PRINTED!
+[20,1] element, prob = 0.774198    (114.599,116.513)-(158.794,161.626) batch id : 0 WILL BE PRINTED!
+[21,1] element, prob = 0.695678    (413.454,434.859)-(460.336,477.795) batch id : 0 WILL BE PRINTED!
+[22,1] element, prob = 0.495147    (107.636,321.207)-(156.872,364.036) batch id : 0
+[23,1] element, prob = 0.451679    (109.334,224.972)-(158.214,270.294) batch id : 0
+[ INFO ] Image out_0.bmp created!
+
+total inference time: 10.2547
+Average running time of one iteration: 10.2547 ms
+
+Throughput: 97.5167 FPS
+
+[ INFO ] Execution successful
+
+```
