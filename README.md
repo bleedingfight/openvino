@@ -4,4 +4,4 @@
 
 使用例子：
 - [目标检测](object_detection/README.md)
-
+- [OpenVC](OpenVX/README.md)
